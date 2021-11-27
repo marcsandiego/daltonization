@@ -1,4 +1,4 @@
-% USAGE Daltonization.daltonize(IMAGE)
+% USAGE Daltonization.daltonize(IMAGE, 0, 0)
 
 classdef Daltonization
     methods(Static)
@@ -223,20 +223,15 @@ classdef Daltonization
           RGB_p = uint8(RGB_p);
           RGB_d = uint8(RGB_d);
           RGB_t = uint8(RGB_t);
-          
-          % For checking only...
-          figure(1)
-          subplot(2,2,1), imshow(RGB_p);
-          subplot(2,2,2), imshow(RGB_d);
-          subplot(2,2,3), imshow(RGB_t);
 
           % Writing images to files...
           [dir, name, ext] = fileparts(image_path);
-          imwrite(RGB_p,strcat(name, '_p', ext),'jpeg');
-          imwrite(RGB_d,strcat(name, '_d', ext),'jpeg');
-          imwrite(RGB_t,strcat(name, '_t', ext),'jpeg');
-
-          app.results(app, name, ext)
+          imwrite(RGB_p,append(dir, '\', name, '_p', ext),'jpeg');
+          disp(append(dir, '\', name, '_p', ext))
+          imwrite(RGB_d,append(dir, '\', name, '_d', ext),'jpeg');
+          disp(append(dir, '\', name, '_d', ext))
+          imwrite(RGB_t,append(dir, '\', name, '_t', ext),'jpeg');
+          disp(append(dir, '\', name, '_t', ext))
 
         end
     end
